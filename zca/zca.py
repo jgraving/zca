@@ -21,7 +21,7 @@ import numpy as np
 from scipy import linalg
 
 from sklearn.base import TransformerMixin, BaseEstimator
-from sklearn.utils.validation import check_is_fitted, check_array, warn_if_not_float
+from sklearn.utils.validation import check_is_fitted, check_array
 
 class ZCA(BaseEstimator, TransformerMixin):
     def __init__(self, regularization=1e-6, copy=False):
