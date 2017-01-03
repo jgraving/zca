@@ -21,7 +21,7 @@ import numpy as np
 from scipy import linalg
 
 from sklearn.base import TransformerMixin, BaseEstimator
-from sklearn.utils.validation import check_is_fitted, check_array
+from sklearn.utils.validation import check_is_fitted, check_array, as_float_array
 
 class ZCA(BaseEstimator, TransformerMixin):
     def __init__(self, regularization=1e-6, copy=False):
@@ -39,7 +39,7 @@ class ZCA(BaseEstimator, TransformerMixin):
         """
         X = check_array(X, accept_sparse=None, copy=self.copy,
                         ensure_2d=True)
-        X = X.astype(np.float)
+        X = as_float_array(X, copy=self.copy)
         self.mean_ = X.mean(axis=0)
         X_ = X - self.mean_
         cov = np.dot(X_.T, X_) / (X_.shape[0]-1)
